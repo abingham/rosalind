@@ -15,8 +15,8 @@ build-type:          Simple
 -- extra-source-files:  
 cabal-version:       >=1.10
 
-executable rosalind
-  -- main-is:             
+executable counting_nucleotides
+  main-is:             counting_nucleotides.hs
   -- other-modules:       
   -- other-extensions:    
   build-depends:       base >=4.7 && <4.8

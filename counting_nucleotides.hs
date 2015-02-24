@@ -1,3 +1,4 @@
+import Data.List
 import System.Environment
 
 type Count = (Integer, Integer, Integer, Integer)
@@ -9,16 +10,20 @@ update (a, c, g, t) 'G' = (a, c, g + 1, t)
 update (a, c, g, t) 'T' = (a, c, g, t + 1)
 update (a, c, g, t) _ = (a, c, g, t)
 
-countNucleotides :: String -> (Integer, Integer, Integer, Integer)
+countNucleotides :: String -> Count
 countNucleotides s = foldl update (0, 0, 0, 0) s
 
-run :: String -> IO ()
-run path = do
+processFile :: String -> IO Count
+processFile path = do
   contents <- readFile path
-  putStrLn.show $ countNucleotides contents
-  return ()
+  return (countNucleotides contents)
+
+toString :: Count -> String
+toString (a, b, c, d) = intercalate " " $ map show [a, b, c, d]
 
 main :: IO ()
 main = do
   args <- getArgs
-  run (args !! 1)
+  count <- processFile (args !! 0)
+  putStrLn $ toString count
+  return ()
