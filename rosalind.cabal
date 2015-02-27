@@ -16,7 +16,7 @@ build-type:          Simple
 cabal-version:       >=1.10
 
 executable gc_content
-  main-is:             gc_content.hs
+  main-is:             gc_content/gc_content.hs
   -- other-modules:       
   -- other-extensions:    
   build-depends: base >=4.7 && <4.8
