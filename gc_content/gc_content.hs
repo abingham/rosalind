@@ -1,3 +1,4 @@
+import Text.Printf
 import Data.List
 import Data.List.Split
 import System.Environment
