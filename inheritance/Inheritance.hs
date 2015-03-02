@@ -24,9 +24,9 @@ pairing H HR pop@(k, m, n) = prob m n pop
 pairing HR HD pop@(k, m, n) = prob n k pop
 pairing HR H  pop@(k, m, n) = prob n m pop
 pairing HR HR pop@(k, m, n) = prob n (n - 1) pop
-  where
-    count (m, n, o) = m + n + o
-    prob a b pop = (a / count) *  (b / (count - 1))
+
+count (m, n, o) = m + n + o
+prob a b pop = (a / count) *  (b / (count - 1))
 
 main = do
   putStrLn $ show $ fromIntegral (length dominant) / fromIntegral (length full)
