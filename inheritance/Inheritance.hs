@@ -1,26 +1,32 @@
 import Data.List (tails)
 
-data Allele = Dom | Rec;
+data Gene = HD | H | HR
 
-data Gene = Gene Allele Allele;
+type Population = (Int, Int, Int)
 
-combinations :: Int -> [a] -> [[a]]
-combinations 0 _  = [[]]
-combinations n xs = [ y:ys | y:xs' <- tails xs
-                           , ys <- combinations (n-1) xs']
+-- |Calculate probability of dominant phenotype given two genes
+dominant :: Gene -> Gene -> Float
+dominant HD _ = 1
+dominant _ HD = 1
+dominant H H = 0.75
+dominant H _ = 0.5
+dominant _ H = 0.5
+dominant _ _ = 0
 
--- |Produce a list of population constituents given a frequency description
-population :: (Integer, Integer, Integer) -> [Gene]
-population (0, 0, 0) = []
-population (0, 0, n) = Gene Rec Rec : population (0, 0, n - 1)
-population (0, n, m) = Gene Dom Rec : population (0, n - 1, m)
-population (n, m, o) = Gene Dom Dom : population (n - 1, m, o)
-
-reproduce [HomozygousDominant, _] = True
-reproduce [_, HomozygousDominant] = True
-reproduce [Heterozygous, _] = True
-reproduce [_, Heterozygous] = True
-reproduce _ = False
+-- |Calculate the probabilities of different parent genotype pairings
+pairing :: Gene -> Gene -> Population -> Maybe Float
+pairing HD HD pop@(k, m, n) = prob k (k - 1) pop
+pairing HD H  pop@(k, m, n) = prob k m pop
+pairing HD HR pop@(k, m, n) = prob k n pop
+pairing H HD pop@(k, m, n) = prob m k pop
+pairing H H  pop@(k, m, n) = prob m (m - 1) pop
+pairing H HR pop@(k, m, n) = prob m n pop
+pairing HR HD pop@(k, m, n) = prob n k pop
+pairing HR H  pop@(k, m, n) = prob n m pop
+pairing HR HR pop@(k, m, n) = prob n (n - 1) pop
+  where
+    count (m, n, o) = m + n + o
+    prob a b pop = (a / count) *  (b / (count - 1))
 
 main = do
   putStrLn $ show $ fromIntegral (length dominant) / fromIntegral (length full)
