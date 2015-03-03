@@ -2,10 +2,14 @@ import Data.Foldable
 import Data.Ratio
 import Data.Sequence
 
-data Gene = HD | H | HR
-          deriving (Show)
+data Gene =
+  HD | H | HR
+  deriving (Show)
 
 type Population = (Int, Int, Int)
+
+allPairings :: [[Gene]]
+allPairings = map toList $ replicateM 2 [HD, HR, H]
 
 -- |Calculate probability of dominant phenotype given two genes
 dominant :: Gene -> Gene -> Ratio Int
@@ -38,15 +42,15 @@ prob a b (m, n, o)
     aProb = a % size :: Ratio Int
     bProb = b % (size - 1) :: Ratio Int
 
+-- |Calculate the probability of an offspring having the dominant phenotype.
 probOfDominant :: Population -> Float
 probOfDominant pop = fromIntegral (numerator fullProb) / fromIntegral (denominator fullProb)
   where
-    pairings = map toList $ replicateM 2 [HD, HR, H] :: [[Gene]]
-    pairingProbs = map (\[a, b] -> pairing a b pop) pairings :: [Ratio Int]
-    domProbs = map (\[a, b] -> dominant a b) pairings :: [Ratio Int]
+    pairingProbs = map (\[a, b] -> pairing a b pop) allPairings :: [Ratio Int]
+    domProbs = map (\[a, b] -> dominant a b) allPairings :: [Ratio Int]
     fullProb = Prelude.sum $ Prelude.zipWith (*) pairingProbs domProbs
 
 main :: IO ()
 main = do
-  putStrLn $ show $ probOfDominant (2,2,2)
+  putStrLn $ show $ probOfDominant (21, 30, 19)
   return ()
