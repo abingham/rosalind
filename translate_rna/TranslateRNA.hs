@@ -1,7 +1,9 @@
+import Data.List
 import Data.List.Split
+import System.Environment
 
 data AminoAcid = A | C | D | E | F | G | H | I | K | L | M | N | P | Q | R | S | T | V | W | Y | Stop
-               deriving (Read, Show)
+               deriving (Read, Show, Eq)
 
 data RNABase = RNA_A | RNA_C | RNA_G | RNA_U
              deriving (Show)
@@ -80,12 +82,25 @@ rnaCodon (RNA_C, RNA_G, RNA_G) = R
 rnaCodon (RNA_A, RNA_G, RNA_G) = R
 rnaCodon (RNA_G, RNA_G, RNA_G) = G
 
--- map (\(a:b:c:_) -> (a,b,c)) $ chunksOf 3 testData
+makeCodon (a:b:c:_) = rnaCodon (a, b, c)
+makeCodon _ = Stop -- I'm not sure why this is needed, but the
+                   -- challenge input failed without this.
+
+translate :: String -> String
+translate n = intercalate ""
+              $ map show
+              $ filter (\x -> x /= Stop)
+              $ map makeCodon
+              $ chunksOf 3
+              $ map (\x -> read [x]) n
+
+translateFile :: String -> IO String
+translateFile fname = do
+  contents <- readFile (fname)
+  return (translate contents)
 
 main = do
+  args <- getArgs
+  output <- translateFile (args !! 0)
+  putStrLn output
   return ()
-
--- Test data
-testData :: String
-testData = "AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA"
-testRNA = map (\(a:b:c:_) -> rnaCodon (a,b,c)) $ chunksOf 3 $ map (\x -> read [x]) testData
