@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO.File;
 using System.Linq;
 
 class CountingNucleotides
@@ -19,9 +20,10 @@ class CountingNucleotides
 	return counts;
     }
     
-    static void Main()
+    static void Main(string[] args)
     {
-	string data = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC";
+	string filename = args[0];
+	string data = System.IO.File.ReadAllText(@filename);
 	var strValues = count(data).Values.Select(v => v.ToString());
 	Console.WriteLine(String.Join(" ", strValues));
     }   
