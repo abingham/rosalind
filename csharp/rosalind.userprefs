@@ -1,0 +1,18 @@
+﻿<Properties StartupItem="rosalind/rosalind.csproj" GitUserInfo="UsingGIT">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="transcribe/Transcribe.cs">
+    <Files>
+      <File FileName="rosalind/MyClass.cs" Line="1" Column="1" />
+      <File FileName="rosalind/counting_nucleotides.cs" Line="6" Column="2" />
+      <File FileName="counting_nucleotides/counting_nucleotides_cli.cs" Line="1" Column="1" />
+      <File FileName="rosalind_test/packages.config" Line="1" Column="1" />
+      <File FileName="rosalind/Transcriber.cs" Line="7" Column="16" />
+      <File FileName="rosalind_test/Test.cs" Line="29" Column="63" NotebookId="1" />
+      <File FileName="transcribe/Transcribe.cs" Line="3" Column="7" NotebookId="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
