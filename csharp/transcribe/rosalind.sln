@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rosalind", "rosalind\rosalind.csproj", "{B5ED933E-AFBE-421F-BAFC-F3DABC4A7B87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "counting_nucleotides", "counting_nucleotides\counting_nucleotides.csproj", "{753C9459-5939-4BDC-AE75-1ACA3A4032AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rosalind_test", "rosalind_test\rosalind_test.csproj", "{2548F71A-ED49-462F-BBBD-4D3D41433659}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "transcribe", "transcribe\transcribe.csproj", "{A743EDA4-27AB-490F-8066-0901DCDDA0E2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2548F71A-ED49-462F-BBBD-4D3D41433659}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2548F71A-ED49-462F-BBBD-4D3D41433659}.Debug|x86.Build.0 = Debug|Any CPU
+		{2548F71A-ED49-462F-BBBD-4D3D41433659}.Release|x86.ActiveCfg = Release|Any CPU
+		{2548F71A-ED49-462F-BBBD-4D3D41433659}.Release|x86.Build.0 = Release|Any CPU
+		{753C9459-5939-4BDC-AE75-1ACA3A4032AC}.Debug|x86.ActiveCfg = Debug|x86
+		{753C9459-5939-4BDC-AE75-1ACA3A4032AC}.Debug|x86.Build.0 = Debug|x86
+		{753C9459-5939-4BDC-AE75-1ACA3A4032AC}.Release|x86.ActiveCfg = Release|x86
+		{753C9459-5939-4BDC-AE75-1ACA3A4032AC}.Release|x86.Build.0 = Release|x86
+		{A743EDA4-27AB-490F-8066-0901DCDDA0E2}.Debug|x86.ActiveCfg = Debug|x86
+		{A743EDA4-27AB-490F-8066-0901DCDDA0E2}.Debug|x86.Build.0 = Debug|x86
+		{A743EDA4-27AB-490F-8066-0901DCDDA0E2}.Release|x86.ActiveCfg = Release|x86
+		{A743EDA4-27AB-490F-8066-0901DCDDA0E2}.Release|x86.Build.0 = Release|x86
+		{B5ED933E-AFBE-421F-BAFC-F3DABC4A7B87}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B5ED933E-AFBE-421F-BAFC-F3DABC4A7B87}.Debug|x86.Build.0 = Debug|Any CPU
+		{B5ED933E-AFBE-421F-BAFC-F3DABC4A7B87}.Release|x86.ActiveCfg = Release|Any CPU
+		{B5ED933E-AFBE-421F-BAFC-F3DABC4A7B87}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.FileWidth = 120
+		$1.inheritsSet = VisualStudio
+		$1.inheritsScope = text/plain
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.AfterDelegateDeclarationParameterComma = True
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+	EndGlobalSection
+EndGlobal
