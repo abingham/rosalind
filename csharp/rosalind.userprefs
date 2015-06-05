@@ -1,4 +1,4 @@
-﻿<Properties StartupItem="rosalind/rosalind.csproj">
+﻿<Properties StartupItem="rosalind/rosalind.csproj" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="transcribe/Transcribe.cs">
     <Files>
