@@ -23,7 +23,7 @@ class CountingNucleotides
     static void Main(string[] args)
     {
 	string filename = args[0];
-	string data = System.IO.File.ReadAllText(@filename);
+	string data = System.IO.File.ReadAllText(@filename).Trim();
 	var strValues = count(data).Values.Select(v => v.ToString());
 	Console.WriteLine(String.Join(" ", strValues));
     }   
