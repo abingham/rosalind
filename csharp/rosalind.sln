@@ -3,11 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rosalind", "rosalind\rosalind.csproj", "{B5ED933E-AFBE-421F-BAFC-F3DABC4A7B87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountingNucleotides", "counting_nucleotides\CountingNucleotides.csproj", "{753C9459-5939-4BDC-AE75-1ACA3A4032AC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rosalind_test", "rosalind_test\rosalind_test.csproj", "{2548F71A-ED49-462F-BBBD-4D3D41433659}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "transcribe", "transcribe\transcribe.csproj", "{A743EDA4-27AB-490F-8066-0901DCDDA0E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rosalind-cli", "rosalind-cli\rosalind-cli.csproj", "{A3071E0A-D57B-4307-8723-BA8EB83E6AB2}"
 EndProject
@@ -21,18 +17,10 @@ Global
 		{2548F71A-ED49-462F-BBBD-4D3D41433659}.Debug|x86.Build.0 = Debug|Any CPU
 		{2548F71A-ED49-462F-BBBD-4D3D41433659}.Release|x86.ActiveCfg = Release|Any CPU
 		{2548F71A-ED49-462F-BBBD-4D3D41433659}.Release|x86.Build.0 = Release|Any CPU
-		{753C9459-5939-4BDC-AE75-1ACA3A4032AC}.Debug|x86.ActiveCfg = Debug|x86
-		{753C9459-5939-4BDC-AE75-1ACA3A4032AC}.Debug|x86.Build.0 = Debug|x86
-		{753C9459-5939-4BDC-AE75-1ACA3A4032AC}.Release|x86.ActiveCfg = Release|x86
-		{753C9459-5939-4BDC-AE75-1ACA3A4032AC}.Release|x86.Build.0 = Release|x86
 		{A3071E0A-D57B-4307-8723-BA8EB83E6AB2}.Debug|x86.ActiveCfg = Debug|x86
 		{A3071E0A-D57B-4307-8723-BA8EB83E6AB2}.Debug|x86.Build.0 = Debug|x86
 		{A3071E0A-D57B-4307-8723-BA8EB83E6AB2}.Release|x86.ActiveCfg = Release|x86
 		{A3071E0A-D57B-4307-8723-BA8EB83E6AB2}.Release|x86.Build.0 = Release|x86
-		{A743EDA4-27AB-490F-8066-0901DCDDA0E2}.Debug|x86.ActiveCfg = Debug|x86
-		{A743EDA4-27AB-490F-8066-0901DCDDA0E2}.Debug|x86.Build.0 = Debug|x86
-		{A743EDA4-27AB-490F-8066-0901DCDDA0E2}.Release|x86.ActiveCfg = Release|x86
-		{A743EDA4-27AB-490F-8066-0901DCDDA0E2}.Release|x86.Build.0 = Release|x86
 		{B5ED933E-AFBE-421F-BAFC-F3DABC4A7B87}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{B5ED933E-AFBE-421F-BAFC-F3DABC4A7B87}.Debug|x86.Build.0 = Debug|Any CPU
 		{B5ED933E-AFBE-421F-BAFC-F3DABC4A7B87}.Release|x86.ActiveCfg = Release|Any CPU
