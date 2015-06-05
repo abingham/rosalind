@@ -29,6 +29,14 @@ namespace rosalind_test
             const string expected = "GAUGGAACUUGACUACGUAAAUU";
             Assert.That (rosalind.Transcriber.Transcribe (input), Is.EqualTo (expected));
         }
+
+        [Test ()]
+        public void TestComplement ()
+        {
+            const string input = "AAAACCCGGT";
+            const string expected = "ACCGGGTTTT";
+            Assert.That (rosalind.Complementer.Complement (input), Is.EqualTo (expected));
+        }
     }
 }
 

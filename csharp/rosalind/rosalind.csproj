@@ -32,8 +32,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="counting_nucleotides.cs" />
     <Compile Include="Transcriber.cs" />
+    <Compile Include="CountingNucleotides.cs" />
+    <Compile Include="Complement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
