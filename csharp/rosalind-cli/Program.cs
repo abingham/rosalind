@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using DocoptNet;
 
@@ -15,6 +16,7 @@ namespace rosalindcli
       rosalind-cli.exe count-nucleotides <filename>
       rosalind-cli.exe transcribe <filename>
       rosalind-cli.exe wabbits <months> <litter-size>
+      rosalind-cli.exe max-gc <filename>
       rosalind-cli.exe (-h | --help)
 
     Options:
@@ -44,6 +46,17 @@ namespace rosalindcli
             Console.WriteLine (rosalind.Wabbits.wabbits (n, k));    
         }
 
+        private static void GCContent(IDictionary<string,ValueObject> args)
+        {
+            string filename = args["<filename>"].ToString();
+            using (var infile = new FileStream (filename, FileMode.Open)) {
+                var result = GCContentCalculator.MaxGCContent (
+                    new StreamReader (infile));
+                Console.WriteLine (result.Item1);
+                Console.WriteLine (result.Item2);
+            }
+        }
+
         private static void Main(string[] args)
         {
             var arguments = new Docopt().Apply(usage, args, version: "rosalind-cli", exit: true);
@@ -54,6 +67,8 @@ namespace rosalindcli
                 Transcribe (arguments);
             } else if (arguments ["wabbits"].IsTrue) {
                 Wabbits (arguments);
+            } else if (arguments ["max-gc"].IsTrue) {
+                GCContent (arguments);
             }
         }
     }

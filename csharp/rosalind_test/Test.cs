@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections.Generic;
+using System.IO;
 
 using rosalind;
 
@@ -43,6 +45,56 @@ namespace rosalind_test
 	    {
 	        Assert.That(Wabbits.wabbits(5, 3), Is.EqualTo(19));
 	    }
+
+        [Test()]
+        public void TestGCContent()
+        {
+            const string input = "CCACCCTCGTGGTATGGCTAGGCATTCAGGAACCGGAGAACGCTTCAGACCAGCCCGGACTGGGAACCTGCGGGCAGTAGGTGGAAT";
+            const float expected = 60.919540f;
+            Assert.That (GCContentCalculator.GCContent (new StringReader(input)), Is.EqualTo (expected));
+        }
+
+        [Test()]
+        public void TestGCContents()
+        {
+            const string input = @">Rosalind_6404
+            CCTGCGGAAGATCGGCACTAGAATAGCCAGAACCGTTTCTCTGAGGCTTCCGGCCTTCCC
+            TCCCACTAATAATTCTGAGG
+            >Rosalind_5959
+            CCATCGGTAGCGCATCCTTAGTCCAATTAAGTCCCTATCCAGGCGCTCCGCCGAAGGTCT
+            ATATCCATTTGTCAGCAGACACGC
+            >Rosalind_0808
+            CCACCCTCGTGGTATGGCTAGGCATTCAGGAACCGGAGAACGCTTCAGACCAGCCCGGAC
+            TGGGAACCTGCGGGCAGTAGGTGGAAT";
+
+            var expected = new List<Tuple<string, float>> () {
+                Tuple.Create ("Rosalind_6404", 53.75f),
+                Tuple.Create ("Rosalind_5959", 53.57143f),
+                Tuple.Create ("Rosalind_0808", 60.919540f)
+            };
+            var result = new List<Tuple<string, float>>(GCContentCalculator.GCContents(new StringReader(input)));
+
+            Assert.That (result, Is.EqualTo (expected));
+        }
+
+        [Test()]
+        public void TestMaxGCContent() 
+        {
+            const string input = @">Rosalind_6404
+            CCTGCGGAAGATCGGCACTAGAATAGCCAGAACCGTTTCTCTGAGGCTTCCGGCCTTCCC
+            TCCCACTAATAATTCTGAGG
+            >Rosalind_5959
+            CCATCGGTAGCGCATCCTTAGTCCAATTAAGTCCCTATCCAGGCGCTCCGCCGAAGGTCT
+            ATATCCATTTGTCAGCAGACACGC
+            >Rosalind_0808
+            CCACCCTCGTGGTATGGCTAGGCATTCAGGAACCGGAGAACGCTTCAGACCAGCCCGGAC
+            TGGGAACCTGCGGGCAGTAGGTGGAAT";
+
+            var expected = Tuple.Create ("Rosalind_0808", 60.919540f);
+
+            Assert.That (GCContentCalculator.MaxGCContent(new StringReader(input)), 
+                         Is.EqualTo (expected));     
+        }
     }
 }
 
