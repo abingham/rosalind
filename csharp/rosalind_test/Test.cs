@@ -38,11 +38,11 @@ namespace rosalind_test
             Assert.That (rosalind.Complementer.Complement (input), Is.EqualTo (expected));
         }
 
-	[Test()]
-	public void TestWabbits ()
-	{
-	    Assert.That(Wabbits.wabbits(5, 3), Is.EqualTo(19));
-	}
+	    [Test()]
+	    public void TestWabbits ()
+	    {
+	        Assert.That(Wabbits.wabbits(5, 3), Is.EqualTo(19));
+	    }
     }
 }
 
