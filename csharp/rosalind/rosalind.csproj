@@ -35,6 +35,7 @@
     <Compile Include="Transcriber.cs" />
     <Compile Include="CountingNucleotides.cs" />
     <Compile Include="Complement.cs" />
+    <Compile Include="Wabbits.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

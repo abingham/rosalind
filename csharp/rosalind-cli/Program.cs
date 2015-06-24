@@ -14,6 +14,7 @@ namespace rosalindcli
     Usage:
       rosalind-cli.exe count-nucleotides <filename>
       rosalind-cli.exe transcribe <filename>
+      rosalind-cli.exe wabbits <months> <litter-size>
       rosalind-cli.exe (-h | --help)
 
     Options:
@@ -36,6 +37,13 @@ namespace rosalindcli
             Console.WriteLine(rosalind.Transcriber.Transcribe(data));    
         }
 
+        private static void Wabbits(IDictionary<string,ValueObject> args)
+        {
+            int n = args["<months>"].AsInt;
+            int k = args ["<litter-size>"].AsInt;
+            Console.WriteLine (rosalind.Wabbits.wabbits (n, k));    
+        }
+
         private static void Main(string[] args)
         {
             var arguments = new Docopt().Apply(usage, args, version: "rosalind-cli", exit: true);
@@ -44,6 +52,8 @@ namespace rosalindcli
                 CountNucleotides (arguments);
             } else if (arguments ["transcribe"].IsTrue) {
                 Transcribe (arguments);
+            } else if (arguments ["wabbits"].IsTrue) {
+                Wabbits (arguments);
             }
         }
     }
