@@ -17,6 +17,7 @@ namespace rosalindcli
       rosalind-cli.exe transcribe <filename>
       rosalind-cli.exe wabbits <months> <litter-size>
       rosalind-cli.exe max-gc <filename>
+      rosalind-cli.exe hamming <filename>
       rosalind-cli.exe (-h | --help)
 
     Options:
@@ -57,6 +58,19 @@ namespace rosalindcli
             }
         }
 
+        private static void HammingDistance(IDictionary<string,ValueObject> args)
+        {
+            string filename = args ["<filename>"].ToString();
+
+            using (var f = new FileStream (filename, FileMode.Open)) {
+                var reader = new StreamReader (f);
+                var l1 = reader.ReadLine ().Trim ();
+                var l2 = reader.ReadLine ().Trim ();
+
+                Console.WriteLine (Hamming.Distance (new StringReader(l1), new StringReader(l2)));
+            }
+        }
+
         private static void Main(string[] args)
         {
             var arguments = new Docopt().Apply(usage, args, version: "rosalind-cli", exit: true);
@@ -69,6 +83,8 @@ namespace rosalindcli
                 Wabbits (arguments);
             } else if (arguments ["max-gc"].IsTrue) {
                 GCContent (arguments);
+            } else if (arguments ["hamming"].IsTrue) {
+                HammingDistance (arguments);
             }
         }
     }

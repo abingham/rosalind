@@ -37,6 +37,7 @@
     <Compile Include="Complement.cs" />
     <Compile Include="Wabbits.cs" />
     <Compile Include="GCContent.cs" />
+    <Compile Include="Hamming.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

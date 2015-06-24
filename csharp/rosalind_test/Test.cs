@@ -95,6 +95,19 @@ namespace rosalind_test
             Assert.That (GCContentCalculator.MaxGCContent(new StringReader(input)), 
                          Is.EqualTo (expected));     
         }
+
+        [Test()]
+        public void TestHammingDistance()
+        {
+            const string s1 = "GAGCCTACTAACGGGAT";
+            const string s2 = "CATCGTAATGACGGCCT";
+            const int expected = 7;
+            Assert.That(
+                Hamming.Distance (
+                    new StringReader (s1), 
+                    new StringReader (s2)),
+                Is.EqualTo (expected));
+        }
     }
 }
 
