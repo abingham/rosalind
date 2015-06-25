@@ -57,10 +57,6 @@ namespace rosalind
                 {Gene.H, hCount}, 
                 {Gene.HR, hrCount}
             };
-            foreach (var p in pairingProbs(pop).Zip(dominantProbs(), (p1, p2) => Tuple.Create(p1, p2))) {
-                var x = p.Item1 * p.Item2;
-                var y = x;
-            }
             return pairingProbs (pop).Zip (dominantProbs (), (p1, p2) => p1 * p2).Aggregate ((rslt, item) => rslt + item);
         }
     }
