@@ -21,6 +21,7 @@ namespace rosalindcli
       rosalind-cli.exe dom-prob <hd> <h> <hr>
       rosalind-cli.exe translate-rna <filename>
       rosalind-cli.exe find-motif <dna> <motif>
+      rosalind-cli.exe consensus <filename>
       rosalind-cli.exe (-h | --help)
 
     Options:
@@ -103,6 +104,42 @@ namespace rosalindcli
             Console.WriteLine (output);
         }
 
+        private static void Consensus(IDictionary<string, ValueObject> args)
+        {
+            string filename = args ["<filename>"].ToString ();
+
+            int size = 0;
+            using (var infile = new FileStream (filename, FileMode.Open)) {
+                var reader = new StreamReader (infile);
+
+                foreach (var pair in FASTA.read(reader)) {
+                    size = pair.Item2.Length;
+                }
+            }
+
+            var profile = new Profile ((uint)size);
+
+            using (var infile = new FileStream (filename, FileMode.Open)) {
+                var reader = new StreamReader (infile);
+
+                foreach (var pair in FASTA.read(reader)) {
+                    var seq = pair.Item2.Select (b => (Base)Enum.Parse (typeof(Base), b.ToString()));
+                    profile.add (seq);
+                }
+            }
+
+            Console.WriteLine (string.Join("", profile.consensus));
+
+            Console.Write ("A: ");
+            Console.WriteLine (string.Join (" ", profile [Base.A]));
+            Console.Write ("C: ");
+            Console.WriteLine (string.Join (" ", profile [Base.C]));
+            Console.Write ("G: ");
+            Console.WriteLine (string.Join (" ", profile [Base.G]));
+            Console.Write ("T: ");
+            Console.WriteLine (string.Join (" ", profile [Base.T]));
+        }
+
         private static IDictionary<string, Action<IDictionary<string, ValueObject>>> commandMap = 
             new Dictionary<string, Action<IDictionary<string, ValueObject>>>() {
                 {"count-nucleotides", CountNucleotides},
@@ -112,7 +149,8 @@ namespace rosalindcli
                 {"hamming", HammingDistance},
                 {"dom-prob", DominantProbability},
                 {"translate-rna", TranslateRNA},
-                {"find-motif", FindMotif}  
+                {"find-motif", FindMotif},
+                {"consensus", Consensus}
         };
 
         private static void Main(string[] args)

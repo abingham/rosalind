@@ -129,6 +129,47 @@ namespace rosalind_test
             var result = new List<int>(Motif.findMotif (input, motif));
             Assert.That (expected, Is.EqualTo (result));
         }
+
+        [Test()]
+        public void TestConsensus()
+        {
+            string input = @">Rosalind_1
+            ATCCAGCT
+            >Rosalind_2
+            GGGCAACT
+            >Rosalind_3
+            ATGGATCT
+            >Rosalind_4
+            AAGCAACC
+            >Rosalind_5
+            TTGGAACT
+            >Rosalind_6
+            ATGCCATT
+            >Rosalind_7
+            ATGGCACT";
+
+            var profile = new Profile (8);
+            foreach (var pair in FASTA.read(new StringReader(input))) {
+                var seq = pair.Item2.Select (b => (Base)Enum.Parse (typeof(Base), b.ToString()));
+                profile.add (seq);
+            }
+
+            var expectedConcensus = "ATGCAACT".Select(b => (Base)Enum.Parse(typeof(Base), b.ToString()));
+            IDictionary<Base, IList<uint>> expectedProfile = new Dictionary<Base, IList<uint>> () {
+                { Base.A, new List<uint> (){ 5, 1, 0, 0, 5, 5, 0, 0 } },
+                { Base.C, new List<uint> (){ 0, 0, 1, 4, 2, 0, 6, 1 } },
+                { Base.G, new List<uint> (){ 1, 1, 6, 3, 0, 1, 0, 0 } },
+                { Base.T, new List<uint> (){ 1, 5, 0, 0, 0, 1, 1, 6 } }    
+            };
+
+            Assert.That (profile.consensus, Is.EqualTo (expectedConcensus));
+
+            foreach (Base b in Enum.GetValues(typeof(Base))) {
+                Assert.That(
+                    new List<uint>(profile[b]), 
+                    Is.EqualTo(expectedProfile[b]));
+            }
+        }
     }
 }
 

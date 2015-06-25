@@ -12,13 +12,13 @@ namespace rosalind_test
         public void TestSelectionProb()
         {
             var pop = new rosalind.Inheritance.Population () {
-                { Inheritance.Gene.H, 1 },
-                { Inheritance.Gene.HD, 1 },
-                { Inheritance.Gene.HR, 1 }
+                { Inheritance.GeneType.H, 1 },
+                { Inheritance.GeneType.HD, 1 },
+                { Inheritance.GeneType.HR, 1 }
             };
             var expected = new Rational (1, 3);
             Assert.That (
-                Inheritance.selectionProb (Inheritance.Gene.H, pop),
+                Inheritance.selectionProb (Inheritance.GeneType.H, pop),
                 Is.EqualTo (expected));
         }
 
