@@ -40,6 +40,7 @@
     <Compile Include="Hamming.cs" />
     <Compile Include="Inheritance.cs" />
     <Compile Include="Rational.cs" />
+    <Compile Include="TranslateRNA.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

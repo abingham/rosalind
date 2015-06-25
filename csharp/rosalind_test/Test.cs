@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 using rosalind;
 
@@ -107,6 +108,16 @@ namespace rosalind_test
                     new StringReader (s1), 
                     new StringReader (s2)),
                 Is.EqualTo (expected));
+        }
+
+        [Test()]
+        public void TestTranslateRNA()
+        {
+            string input = "AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA";
+            string expected = "MAMAPRTEINSTRING";
+            var result = TranslateRNA.codonsToAminoAcids (new StringReader (input));
+
+            Assert.IsTrue(result.Zip (expected, (a, b) => a == b).All (x => x));
         }
     }
 }

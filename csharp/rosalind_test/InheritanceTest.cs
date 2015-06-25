@@ -25,7 +25,7 @@ namespace rosalind_test
         [Test()]
         public void TestDominantProbability()
         {
-            float expected = 0.78333f;
+            float expected = 0.783333361f;
 
             Rational result = Inheritance.dominantProbability (2, 2, 2);
             Assert.That (

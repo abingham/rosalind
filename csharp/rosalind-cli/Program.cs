@@ -19,6 +19,7 @@ namespace rosalindcli
       rosalind-cli.exe max-gc <filename>
       rosalind-cli.exe hamming <filename>
       rosalind-cli.exe dom-prob <hd> <h> <hr>
+      rosalind-cli.exe translate-rna <filename>
       rosalind-cli.exe (-h | --help)
 
     Options:
@@ -82,6 +83,16 @@ namespace rosalindcli
             Console.WriteLine ((float)prob.Numerator / prob.Denominator);
         }
 
+        private static void TranslateRNA(IDictionary<string,ValueObject> args)
+        {
+            string filename = args ["<filename>"].ToString ();
+            using (var infile = new FileStream (filename, FileMode.Open)) {
+                var reader = new StreamReader (infile);
+                var result = rosalind.TranslateRNA.codonsToAminoAcids (reader);
+                Console.WriteLine(string.Join ("", result));
+            }
+        }
+
         private static void Main(string[] args)
         {
             var arguments = new Docopt().Apply(usage, args, version: "rosalind-cli", exit: true);
@@ -98,6 +109,8 @@ namespace rosalindcli
                 HammingDistance (arguments);
             } else if (arguments ["dom-prob"].IsTrue) {
                 DominantProbability (arguments);
+            } else if (arguments ["translate-rna"].IsTrue) {
+                TranslateRNA (arguments);
             }
         }
     }
