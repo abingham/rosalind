@@ -18,6 +18,7 @@ namespace rosalindcli
       rosalind-cli.exe wabbits <months> <litter-size>
       rosalind-cli.exe max-gc <filename>
       rosalind-cli.exe hamming <filename>
+      rosalind-cli.exe dom-prob <hd> <h> <hr>
       rosalind-cli.exe (-h | --help)
 
     Options:
@@ -71,6 +72,16 @@ namespace rosalindcli
             }
         }
 
+        private static void DominantProbability(IDictionary<string,ValueObject> args)
+        {
+            uint hd = (uint)args ["<hd>"].AsInt;
+            uint h = (uint)args ["<h>"].AsInt;
+            uint hr = (uint)args ["<hr>"].AsInt;
+            
+            var prob = Inheritance.dominantProbability (hd, h, hr);
+            Console.WriteLine ((float)prob.Numerator / prob.Denominator);
+        }
+
         private static void Main(string[] args)
         {
             var arguments = new Docopt().Apply(usage, args, version: "rosalind-cli", exit: true);
@@ -85,6 +96,8 @@ namespace rosalindcli
                 GCContent (arguments);
             } else if (arguments ["hamming"].IsTrue) {
                 HammingDistance (arguments);
+            } else if (arguments ["dom-prob"].IsTrue) {
+                DominantProbability (arguments);
             }
         }
     }
