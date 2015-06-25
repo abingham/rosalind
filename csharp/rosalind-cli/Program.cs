@@ -20,6 +20,7 @@ namespace rosalindcli
       rosalind-cli.exe hamming <filename>
       rosalind-cli.exe dom-prob <hd> <h> <hr>
       rosalind-cli.exe translate-rna <filename>
+      rosalind-cli.exe find-motif <dna> <motif>
       rosalind-cli.exe (-h | --help)
 
     Options:
@@ -93,24 +94,35 @@ namespace rosalindcli
             }
         }
 
+        private static void FindMotif(IDictionary<string,ValueObject> args)
+        {
+            var dna = args ["<dna>"].ToString ();
+            var motif = args ["<motif>"].ToString ();
+            var results = Motif.findMotif (dna, motif);
+            var output = string.Join (" ", results); 
+            Console.WriteLine (output);
+        }
+
+        private static IDictionary<string, Action<IDictionary<string, ValueObject>>> commandMap = 
+            new Dictionary<string, Action<IDictionary<string, ValueObject>>>() {
+                {"count-nucleotides", CountNucleotides},
+                {"transcribe", Transcribe},
+                {"wabbits", Wabbits},
+                {"max-gc", GCContent},
+                {"hamming", HammingDistance},
+                {"dom-prob", DominantProbability},
+                {"translate-rna", TranslateRNA},
+                {"find-motif", FindMotif}  
+        };
+
         private static void Main(string[] args)
         {
             var arguments = new Docopt().Apply(usage, args, version: "rosalind-cli", exit: true);
 
-            if (arguments ["count-nucleotides"].IsTrue) {
-                CountNucleotides (arguments);
-            } else if (arguments ["transcribe"].IsTrue) {
-                Transcribe (arguments);
-            } else if (arguments ["wabbits"].IsTrue) {
-                Wabbits (arguments);
-            } else if (arguments ["max-gc"].IsTrue) {
-                GCContent (arguments);
-            } else if (arguments ["hamming"].IsTrue) {
-                HammingDistance (arguments);
-            } else if (arguments ["dom-prob"].IsTrue) {
-                DominantProbability (arguments);
-            } else if (arguments ["translate-rna"].IsTrue) {
-                TranslateRNA (arguments);
+            foreach (var entry in commandMap) {
+                if (arguments [entry.Key].IsTrue) {
+                    entry.Value (arguments);
+                }
             }
         }
     }

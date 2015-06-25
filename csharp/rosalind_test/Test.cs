@@ -119,6 +119,16 @@ namespace rosalind_test
 
             Assert.IsTrue(result.Zip (expected, (a, b) => a == b).All (x => x));
         }
+
+        [Test()]
+        public void TestMotif()
+        {
+            string input = "GATATATGCATATACTT";
+            string motif = "ATAT";
+            var expected = new List<int> (){ 2, 4, 10 };
+            var result = new List<int>(Motif.findMotif (input, motif));
+            Assert.That (expected, Is.EqualTo (result));
+        }
     }
 }
 
