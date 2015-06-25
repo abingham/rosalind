@@ -20,30 +20,15 @@ namespace rosalind
             return (float)cgCount / fullCount * 100;
         }
 
+        /*
+         * Parse a FASTA-formatted stream, generating a sequence of (tag, gc-content) tuples.
+         */  
         static public IEnumerable<Tuple<string, float>> GCContents(TextReader input)
         {
-            string tag = "";
-            string dna = "";
-            string line;
-            while ((line = input.ReadLine ()) != null) {
-                line = line.Trim ();
-                if (line.Length == 0)
-                    continue;
-                
-                if (line.StartsWith (">")) {
-                    line = line.Substring (1);
-                    if (tag.Length != 0) {
-                        yield return Tuple.Create (tag, GCContent(new StringReader(dna)));
-                    }
-                    tag = line;
-                    dna = "";
-                } else {
-                    dna += line;
-                }
-            }
-
-            if (tag.Length != 0) {
-                yield return Tuple.Create (tag, GCContent(new StringReader(dna)));
+            foreach (var pair in FASTA.read(input)) {
+                yield return Tuple.Create (
+                    pair.Item1, 
+                    GCContent (new StringReader (pair.Item2)));
             }
         }
 
