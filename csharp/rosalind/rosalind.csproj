@@ -42,6 +42,9 @@
     <Compile Include="Rational.cs" />
     <Compile Include="TranslateRNA.cs" />
     <Compile Include="Motif.cs" />
+    <Compile Include="Consensus.cs" />
+    <Compile Include="Base.cs" />
+    <Compile Include="FASTA.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
