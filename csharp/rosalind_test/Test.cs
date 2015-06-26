@@ -48,6 +48,13 @@ namespace rosalind_test
 	    }
 
         [Test()]
+        public void TestSeasonalWabbits()
+        {
+            UInt64 rslt = Wabbits.seasonalWabbits (3).ElementAt (5);
+            Assert.AreEqual (4, rslt);
+        }
+
+        [Test()]
         public void TestGCContent()
         {
             const string input = "CCACCCTCGTGGTATGGCTAGGCATTCAGGAACCGGAGAACGCTTCAGACCAGCCCGGACTGGGAACCTGCGGGCAGTAGGTGGAAT";

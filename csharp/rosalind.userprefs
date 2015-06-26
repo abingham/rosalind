@@ -1,13 +1,24 @@
-﻿<Properties StartupItem="rosalind/rosalind.csproj" GitUserInfo="UsingGIT">
+﻿<Properties StartupItem="rosalind_test/rosalind_test.csproj" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="rosalind_test/Test.cs">
     <Files>
-      <File FileName="rosalind/CountingNucleotides.cs" Line="6" Column="2" />
-      <File FileName="rosalind_test/packages.config" Line="1" Column="1" />
+      <File FileName="rosalind/CountingNucleotides.cs" Line="23" Column="6" />
       <File FileName="rosalind/Transcriber.cs" Line="1" Column="1" />
-      <File FileName="rosalind_test/Test.cs" Line="38" Column="91" NotebookId="1" />
-      <File FileName="rosalind/Complement.cs" Line="4" Column="1" NotebookId="1" />
-      <File FileName="rosalind-cli/Program.cs" Line="23" Column="9" NotebookId="1" />
+      <File FileName="rosalind/Hamming.cs" Line="4" Column="19" />
+      <File FileName="rosalind/Inheritance.cs" Line="9" Column="29" />
+      <File FileName="rosalind/TranslateRNA.cs" Line="23" Column="26" />
+      <File FileName="rosalind/Motif.cs" Line="8" Column="1" />
+      <File FileName="rosalind/Wabbits.cs" Line="9" Column="18" />
+      <File FileName="rosalind/Complement.cs" Line="4" Column="1" />
+      <File FileName="rosalind/Consensus.cs" Line="50" Column="1" />
+      <File FileName="rosalind/Base.cs" Line="9" Column="1" />
+      <File FileName="rosalind/Rational.cs" Line="33" Column="33" />
+      <File FileName="rosalind/FASTA.cs" Line="4" Column="1" />
+      <File FileName="rosalind/GCContent.cs" Line="31" Column="60" />
+      <File FileName="rosalind_test/InheritanceTest.cs" Line="28" Column="42" NotebookId="1" />
+      <File FileName="rosalind_test/Test.cs" Line="53" Column="74" NotebookId="1" />
+      <File FileName="rosalind-cli/Program.cs" Line="140" Column="65" NotebookId="1" />
+      <File FileName="rosalind_test/RationalTest.cs" Line="35" Column="1" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

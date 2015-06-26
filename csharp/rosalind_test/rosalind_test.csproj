@@ -37,6 +37,8 @@
     <Compile Include="Test.cs" />
     <Compile Include="RationalTest.cs" />
     <Compile Include="InheritanceTest.cs" />
+    <Compile Include="CircularBufferTest.cs" />
+    <Compile Include="ModularIntTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

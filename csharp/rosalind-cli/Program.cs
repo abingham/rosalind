@@ -16,6 +16,7 @@ namespace rosalindcli
       rosalind-cli.exe count-nucleotides <filename>
       rosalind-cli.exe transcribe <filename>
       rosalind-cli.exe wabbits <months> <litter-size>
+      rosalind-cli.exe seasonal-wabbits <months> <lifespan>
       rosalind-cli.exe max-gc <filename>
       rosalind-cli.exe hamming <filename>
       rosalind-cli.exe dom-prob <hd> <h> <hr>
@@ -49,6 +50,14 @@ namespace rosalindcli
             int n = args["<months>"].AsInt;
             int k = args ["<litter-size>"].AsInt;
             Console.WriteLine (rosalind.Wabbits.wabbits (n, k));    
+        }
+
+        private static void SeasonalWabbit(IDictionary<string, ValueObject> args)
+        {
+            int months = args ["<months>"].AsInt;
+            int lifespan = args ["<lifespan>"].AsInt;
+            var result = rosalind.Wabbits.seasonalWabbits (lifespan);
+            Console.WriteLine(result.ElementAt(months - 1));
         }
 
         private static void GCContent(IDictionary<string,ValueObject> args)
@@ -145,6 +154,7 @@ namespace rosalindcli
                 {"count-nucleotides", CountNucleotides},
                 {"transcribe", Transcribe},
                 {"wabbits", Wabbits},
+                {"seasonal-wabbits", SeasonalWabbit},   
                 {"max-gc", GCContent},
                 {"hamming", HammingDistance},
                 {"dom-prob", DominantProbability},

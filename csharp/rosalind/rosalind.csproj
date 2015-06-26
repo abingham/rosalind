@@ -45,6 +45,8 @@
     <Compile Include="Consensus.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="FASTA.cs" />
+    <Compile Include="CircularBuffer.cs" />
+    <Compile Include="ModularInt.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
