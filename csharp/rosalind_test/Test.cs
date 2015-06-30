@@ -177,6 +177,36 @@ namespace rosalind_test
                     Is.EqualTo(expectedProfile[b]));
             }
         }
+
+        [Test()]
+        public void OverlapGraphTest()
+        {
+            string input = @">Rosalind_0498
+                             AAATAAA
+                             >Rosalind_2391
+                             AAATTTT
+                             >Rosalind_2323
+                             TTTTCCC
+                             >Rosalind_0442
+                             AAATCCC
+                             >Rosalind_5013
+                             GGGTGGG";
+            
+            var expected = new List<Tuple<string, string>> () {
+                Tuple.Create ("Rosalind_0498", "Rosalind_2391"),
+                Tuple.Create ("Rosalind_0498", "Rosalind_0442"),
+                Tuple.Create ("Rosalind_2391", "Rosalind_2323")
+            };
+
+            var result = new List<Tuple<string, string>> (
+                OverlapGrapher.calculateGraph (3, FASTA.read (new StringReader (input))));
+
+            Assert.AreEqual (expected.Count, result.Count);
+
+            foreach (var pair in expected.Zip(result, (a, b) => Tuple.Create(a, b))) {
+                Assert.AreEqual (pair.Item1, pair.Item2);
+            }
+        }
     }
 }
 

@@ -23,6 +23,7 @@ namespace rosalindcli
       rosalind-cli.exe translate-rna <filename>
       rosalind-cli.exe find-motif <dna> <motif>
       rosalind-cli.exe consensus <filename>
+      rosalind-cli.exe overlap-graph <filename>
       rosalind-cli.exe (-h | --help)
 
     Options:
@@ -149,6 +150,18 @@ namespace rosalindcli
             Console.WriteLine (string.Join (" ", profile [Base.T]));
         }
 
+        private static void OverlapGraph(IDictionary<string, ValueObject> args) {
+            string filename = args ["<filename>"].ToString ();
+
+            using (var infile = new FileStream (filename, FileMode.Open))
+            using (var reader = new StreamReader(infile)) {
+                var result = OverlapGrapher.calculateGraph (3, FASTA.read (reader));
+                foreach (var pair in result) {
+                    Console.WriteLine ("{0} {1}", pair.Item1, pair.Item2);
+                }
+            }
+        }
+
         private static IDictionary<string, Action<IDictionary<string, ValueObject>>> commandMap = 
             new Dictionary<string, Action<IDictionary<string, ValueObject>>>() {
                 {"count-nucleotides", CountNucleotides},
@@ -160,8 +173,9 @@ namespace rosalindcli
                 {"dom-prob", DominantProbability},
                 {"translate-rna", TranslateRNA},
                 {"find-motif", FindMotif},
-                {"consensus", Consensus}
-        };
+                {"consensus", Consensus},
+                {"overlap-graph", OverlapGraph} 
+            };
 
         private static void Main(string[] args)
         {
