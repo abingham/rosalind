@@ -40,6 +40,10 @@ namespace rosalind
         public Rational(long num) : this(num, 1) {
         }
 
+        public static implicit operator Rational(long num) {
+            return new Rational(num);
+        }
+
         public long Numerator {
             get { return Numerator_; }
         }

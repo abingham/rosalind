@@ -207,6 +207,13 @@ namespace rosalind_test
                 Assert.AreEqual (pair.Item1, pair.Item2);
             }
         }
+
+        [Test()]
+        public void ExpectedOffspringTest()
+        {
+            var expected = ExpectedOffspring.calc (1, 0, 0, 1, 0);
+            Assert.AreEqual (3.5, (float)expected.Numerator / expected.Denominator);
+        }
     }
 }
 

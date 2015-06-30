@@ -24,6 +24,7 @@ namespace rosalindcli
       rosalind-cli.exe find-motif <dna> <motif>
       rosalind-cli.exe consensus <filename>
       rosalind-cli.exe overlap-graph <filename>
+      rosalind-cli.exe expected-offspring <AA-AA> <AA-Aa> <AA-aa> <Aa-Aa> <Aa-aa> <aa-aa>
       rosalind-cli.exe (-h | --help)
 
     Options:
@@ -162,6 +163,17 @@ namespace rosalindcli
             }
         }
 
+        private static void ExpectedOffspringCLI(IDictionary<string, ValueObject> args) {
+            var expected = ExpectedOffspring.calc (
+                               args ["<AA-AA>"].AsInt,
+                               args ["<AA-Aa>"].AsInt,
+                               args ["<AA-aa>"].AsInt,
+                               args ["<Aa-Aa>"].AsInt,
+                               args ["<Aa-aa>"].AsInt);
+            Console.WriteLine (
+                (float)expected.Numerator / (float)expected.Denominator);
+        }
+
         private static IDictionary<string, Action<IDictionary<string, ValueObject>>> commandMap = 
             new Dictionary<string, Action<IDictionary<string, ValueObject>>>() {
                 {"count-nucleotides", CountNucleotides},
@@ -174,7 +186,8 @@ namespace rosalindcli
                 {"translate-rna", TranslateRNA},
                 {"find-motif", FindMotif},
                 {"consensus", Consensus},
-                {"overlap-graph", OverlapGraph} 
+                {"overlap-graph", OverlapGraph},
+                {"expected-offspring", ExpectedOffspringCLI}   
             };
 
         private static void Main(string[] args)

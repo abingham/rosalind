@@ -48,6 +48,7 @@
     <Compile Include="CircularBuffer.cs" />
     <Compile Include="ModularInt.cs" />
     <Compile Include="OverlapGraph.cs" />
+    <Compile Include="ExpectedOffspring.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
