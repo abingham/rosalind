@@ -39,6 +39,7 @@
     <Compile Include="InheritanceTest.cs" />
     <Compile Include="CircularBufferTest.cs" />
     <Compile Include="ModularIntTest.cs" />
+    <Compile Include="MotifTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

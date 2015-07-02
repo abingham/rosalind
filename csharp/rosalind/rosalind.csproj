@@ -49,6 +49,7 @@
     <Compile Include="ModularInt.cs" />
     <Compile Include="OverlapGraph.cs" />
     <Compile Include="ExpectedOffspring.cs" />
+    <Compile Include="SharedMotifs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -128,16 +128,6 @@ namespace rosalind_test
         }
 
         [Test()]
-        public void TestMotif()
-        {
-            string input = "GATATATGCATATACTT";
-            string motif = "ATAT";
-            var expected = new List<int> (){ 2, 4, 10 };
-            var result = new List<int>(Motif.findMotif (input, motif));
-            Assert.That (expected, Is.EqualTo (result));
-        }
-
-        [Test()]
         public void TestConsensus()
         {
             string input = @">Rosalind_1

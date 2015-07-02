@@ -25,6 +25,7 @@ namespace rosalindcli
       rosalind-cli.exe consensus <filename>
       rosalind-cli.exe overlap-graph <filename>
       rosalind-cli.exe expected-offspring <AA-AA> <AA-Aa> <AA-aa> <Aa-Aa> <Aa-aa> <aa-aa>
+      rosalind-cli.exe shared-motif <filename>
       rosalind-cli.exe (-h | --help)
 
     Options:
@@ -174,6 +175,19 @@ namespace rosalindcli
                 (float)expected.Numerator / (float)expected.Denominator);
         }
 
+        private static void SharedMotifCLI(IDictionary<string, ValueObject> args) {
+            string filename = args ["<filename>"].ToString ();
+
+            using (var infile = new FileStream (filename, FileMode.Open))
+            using (var reader = new StreamReader(infile)) {
+                var tracker = FASTA.read (reader)
+                    .Select(p => p.Item2)
+                    .Aggregate (new MotifTracker (), (trk, s) => trk.add (s));
+                Console.WriteLine (
+                    tracker.motifs.Where(x => x.Length == tracker.maxLen).First());
+            }
+        }
+
         private static IDictionary<string, Action<IDictionary<string, ValueObject>>> commandMap = 
             new Dictionary<string, Action<IDictionary<string, ValueObject>>>() {
                 {"count-nucleotides", CountNucleotides},
@@ -187,7 +201,8 @@ namespace rosalindcli
                 {"find-motif", FindMotif},
                 {"consensus", Consensus},
                 {"overlap-graph", OverlapGraph},
-                {"expected-offspring", ExpectedOffspringCLI}   
+                {"expected-offspring", ExpectedOffspringCLI},
+                {"shared-motif", SharedMotifCLI}
             };
 
         private static void Main(string[] args)
